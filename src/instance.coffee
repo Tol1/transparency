@@ -43,7 +43,9 @@ module.exports = class Instance
       element.empty().el.appendChild model
 
     else if typeof model == 'object'
-      for own key, value of model when value?
+      for own key, value of model
+        if !value?
+          value = ''
 
         if _.isString(value) or _.isNumber(value) or _.isBoolean(value) or _.isDate(value)
           for element in @matchingElements key
